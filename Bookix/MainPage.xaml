@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:services="clr-namespace:Bookix.Services"
+             xmlns:controls="clr-namespace:Bookix.Controls"
+             xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+             x:Class="Bookix.MainPage"
+             Background="AliceBlue"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <Grid>
+        <Grid RowDefinitions="Auto, *">
+
+            <HorizontalStackLayout Grid.Row="0" Padding="15" Spacing="15" BackgroundColor="White">
+                <Image Source="sidemenu.svg"
+                    WidthRequest="28" 
+                    HeightRequest="28" 
+                    VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSideMenuButtonTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Библиотека" FontSize="22" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <CollectionView Grid.Row="1" x:Name="BooksCollection" Margin="15" InputTransparent="False" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="5" Padding="0" InputTransparent="False">
+                            <Grid Padding="15" Margin="0.5" BackgroundColor="#F3F4F6"
+                                  ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnBookClicked"/>
+                                </Grid.GestureRecognizers>
+
+                                <Image Grid.Column="0"
+                                       Source="{Binding CoverPath}"
+                                       HeightRequest="80"
+                                       WidthRequest="60"
+                                       Aspect="AspectFill"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start" />
+
+                                <StackLayout Grid.Column="1" Orientation="Vertical" Margin="10,5" VerticalOptions="Start">
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="18" TextColor="Black" LineBreakMode="TailTruncation"/>
+                                    <Label Text="{Binding Author}" FontSize="14" TextColor="DimGray" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" Grid.Column="2">
+                                    <Label Padding="5" FontSize="18" TextColor="DimGray" FontAttributes="Italic"
+                                           Text="{Binding Progress, StringFormat='Прочитано: {0}%'}"
+                                           VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                    <Button Text="···" TextColor="DimGray" BackgroundColor="#F3F4F6" Padding="0, 0"
+                                            FontSize="18" HorizontalOptions="End" Clicked="OnBookSettingsButtonClicked" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Grid.Row="1" Text="+"
+                    FontSize="28" WidthRequest="65" HeightRequest="65" CornerRadius="32"
+                    HorizontalOptions="End" VerticalOptions="End"
+                    Margin="20" BackgroundColor="#23AFFF" TextColor="White"
+                    Clicked="OnAddBookClicked" />
+        </Grid>
+
+        <controls:SideMenuControl x:Name="SideMenu" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:services="clr-namespace:Bookix.Services"
+             xmlns:controls="clr-namespace:Bookix.Controls"
+             x:Class="Bookix.SettingsPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Настройки"
+             Shell.NavBarIsVisible="False">
+    <Grid>
+        <VerticalStackLayout>
+            <HorizontalStackLayout Padding="15" Spacing="15" BackgroundColor="White">
+                <!--<Label Text="☰" FontSize="28" TextColor="Gray" VerticalOptions="Center">-->
+                <Image Source="sidemenu.svg"
+                    WidthRequest="28" 
+                    HeightRequest="28" 
+                    VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSideMenuButtonTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Настройки" FontSize="22" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+            <Grid ColumnDefinitions="*, Auto" RowDefinitions="60" CascadeInputTransparent="False" Background="White" >
+                <Label Grid.Column="0" Text="Режим отладки" HorizontalOptions="Start" Margin="10, 0" Padding="0, 3.5"   VerticalOptions="Center" FontAttributes="Bold" FontSize="20"/>
+                <services:EnhancedSwitch
+                    IsToggled="False"
+                    Grid.Column="1"
+                    x:Name="DebugMode"
+                    HorizontalOptions="End" VerticalOptions="End"
+                    Margin="20, 7"/>
+            </Grid>
+            <Grid ColumnDefinitions="*, Auto" Padding="15" >
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Уведомления" FontSize="20" />
+                    <Label Text="Получать пуш-сообщения о новостях" FontSize="12" Opacity="0.6" />
+                </VerticalStackLayout>
+                <services:EnhancedSwitch Grid.Column="1" IsToggled="{Binding IsNotificationsEnabled}" />
+            </Grid>
+        </VerticalStackLayout>
+        <controls:SideMenuControl x:Name="SideMenu" />
+    </Grid>
+    <!--<Grid>
+
+        <VerticalStackLayout>
+
+            <HorizontalStackLayout Padding="15" Spacing="15" BackgroundColor="White">
+                <Label Text="☰" FontSize="28" TextColor="Gray" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSideMenuButtonClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="Настройки" FontSize="22" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <Grid ColumnDefinitions="*, Auto" RowDefinitions="60" CascadeInputTransparent="False" Background="White" >
+                <Label Grid.Column="0" Text="Режим отладки" HorizontalOptions="Start" Margin="10, 0" Padding="0, 3.5"   VerticalOptions="Center" FontAttributes="Bold" FontSize="20"/>
+                <services:EnhancedSwitch
+                    IsToggled="False"
+                    Grid.Column="1"
+                    x:Name="DebugMode"
+                    HorizontalOptions="End" VerticalOptions="End"
+                    Margin="20, 7"/>
+            </Grid>
+
+            <Grid ColumnDefinitions="*, Auto" Padding="15" >
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Уведомления" FontSize="20" />
+                    <Label Text="Получать пуш-сообщения о новостях" FontSize="12" Opacity="0.6" />
+                </VerticalStackLayout>
+                <services:EnhancedSwitch Grid.Column="1" IsToggled="{Binding IsNotificationsEnabled}" />
+            </Grid>
+
+        </VerticalStackLayout>
+
+        <controls:SideMenuControl x:Name="SideMenu" />
+
+    </Grid>-->
+</ContentPage>
