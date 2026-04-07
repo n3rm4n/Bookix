@@ -9,7 +9,7 @@ namespace Bookix;
 public partial class MainPage : ContentPage
 {
     public ObservableCollection<Book> MyBooks { get; set; } = [];
-
+    private bool _debugMode = true;
     public MainPage()
     {
         InitializeComponent();
@@ -26,16 +26,22 @@ public partial class MainPage : ContentPage
     {
         if (sender is VisualElement visElement && visElement.BindingContext is Book book)
         {
-            var sb = Toast.Make("Начало загрузки книги", ToastDuration.Short, 14);
-            await MainThread.InvokeOnMainThreadAsync(async () => await sb.Show());
-            await Navigation.PushAsync(new ReadingPage(book)); // Navigate to the Reading Page and pass the selected book info
+            if (_debugMode)
+            {
+                var sb = Toast.Make("Начало загрузки книги", ToastDuration.Short, 14);
+                await MainThread.InvokeOnMainThreadAsync(async () => await sb.Show());
+            }
+            await Navigation.PushAsync(new ReadingPage(book));
         }
     }
     private async void OnSideMenuButtonTapped(object sender, EventArgs e)
     {
         await SideMenu.Open();
     }
-
+    private async void OnCloseBookSettingsTapped(object sender, EventArgs e)
+    {
+        
+    }
     private async Task LoadBooks()
     {
         var savedBooks = Preferences.Default.Get("SavedBooks", string.Empty);

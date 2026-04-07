@@ -3,6 +3,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.Widget;
 using Microsoft.Maui.Handlers;
+using The49.Maui.BottomSheet;
 using Msg = CommunityToolkit.Maui.Alerts;
 namespace Bookix.Services
 {
@@ -11,13 +12,17 @@ namespace Bookix.Services
         protected override void ConnectHandler(AppCompatTextView platformView)
         {
             base.ConnectHandler(platformView);
-            // Applying custom callback for the  selection menu
-            platformView.CustomSelectionActionModeCallback = new CustomSelectionCallback();
+            platformView.CustomSelectionActionModeCallback = new CustomSelectionCallback(platformView);
         }
     }
 
     public class CustomSelectionCallback : Java.Lang.Object, ActionMode.ICallback
     {
+        private readonly AppCompatTextView _textView;
+        public CustomSelectionCallback(AppCompatTextView textView)
+        {
+            _textView = textView;
+        }
         public bool OnCreateActionMode(ActionMode mode, IMenu menu)
         {
             menu.Add(0, 101, 0, "Словарь"); // (Id, GroupId, Order, Title)
@@ -28,11 +33,23 @@ namespace Bookix.Services
         {
             if (item.ItemId == 101)
             {
+                // 1. Получаем границы выделенного текста
+                int selStart = _textView.SelectionStart;
+                int selEnd = _textView.SelectionEnd;
+                int min = Math.Max(0, Math.Min(selStart, selEnd));
+                int max = Math.Max(0, Math.Max(selStart, selEnd));
 
-                // Логика нажатия. Можно через MessagingCenter или WeakReference Messenger 
-                // отправить событие в общую часть кода.
-                Msg.Toast.Make("Нажата моя кнопка!", CommunityToolkit.Maui.Core.ToastDuration.Short, 14).Show();
-                mode.Finish(); // Closing menu
+                // 2. Вырезаем выделенное слово
+                string selectedText = _textView.Text.Substring(min, max - min);
+
+                // 3. Открываем шторку в главном потоке MAUI
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    var sheet = new WordDefinition(selectedText);
+                    await sheet.ShowAsync(App.Current.MainPage.Window);
+                });
+
+                mode.Finish(); // Закрываем контекстное меню Android
                 return true;
             }
             return false;

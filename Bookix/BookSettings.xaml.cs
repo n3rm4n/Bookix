@@ -6,6 +6,8 @@ public partial class BookSettings : BottomSheet
 {
     private Book _currentBook;
     private Func<Task> _onDeletedCallback;
+    private bool _bookSettingsClosingCalled;
+    
 
     public BookSettings(Book book, Func<Task> onDeletedCallback)
     {

@@ -22,7 +22,7 @@
                 <Label Text="Настройки" FontSize="22" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
             </HorizontalStackLayout>
             <Grid ColumnDefinitions="*, Auto" RowDefinitions="60" CascadeInputTransparent="False" Background="White" >
-                <Label Grid.Column="0" Text="Режим отладки" HorizontalOptions="Start" Margin="10, 0" Padding="0, 3.5"   VerticalOptions="Center" FontAttributes="Bold" FontSize="20"/>
+                <Label Grid.Column="0" Text="Режим отладки*" HorizontalOptions="Start" Margin="10, 0" Padding="0, 3.5"   VerticalOptions="Center" FontAttributes="Bold" FontSize="20"/>
                 <services:EnhancedSwitch
                     IsToggled="False"
                     Grid.Column="1"
@@ -32,10 +32,38 @@
             </Grid>
             <Grid ColumnDefinitions="*, Auto" Padding="15" >
                 <VerticalStackLayout Grid.Column="0">
-                    <Label Text="Уведомления" FontSize="20" />
-                    <Label Text="Получать пуш-сообщения о новостях" FontSize="12" Opacity="0.6" />
+                    <Label Text="Горизонтальный режим*" FontSize="20" />
+                    <Label Text="" FontSize="12" Opacity="0.6" />
                 </VerticalStackLayout>
                 <services:EnhancedSwitch Grid.Column="1" IsToggled="{Binding IsNotificationsEnabled}" />
+            </Grid>
+            <Grid ColumnDefinitions="*, Auto" Padding="15" >
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Уведомления*" FontSize="20" />
+                    <Label Text="Получать пуш-сообщения об обновлениях" FontSize="12" Opacity="0.6" />
+                </VerticalStackLayout>
+                <services:EnhancedSwitch Grid.Column="1" IsToggled="{Binding IsNotificationsEnabled}" />
+            </Grid>
+            <Grid ColumnDefinitions="*, Auto" Padding="15" >
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Полноэкранный режим*" FontSize="20" />
+                    <Label Text="Убрать строку уведомлений" FontSize="12" Opacity="0.6" />
+                </VerticalStackLayout>
+                <services:EnhancedSwitch Grid.Column="1" IsToggled="{Binding IsNotificationsEnabled}" />
+            </Grid>
+            <Grid ColumnDefinitions="*, Auto" Padding="15" >
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Уведомления в режиме чтения*" FontSize="20" />
+                    <Label Text="" FontSize="12" Opacity="0.6" />
+                </VerticalStackLayout>
+                <services:EnhancedSwitch Grid.Column="1" IsToggled="{Binding IsNotificationsEnabled}" />
+            </Grid>
+            <Grid ColumnDefinitions="*, Auto" Padding="15" >
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Тёмная тема" FontSize="20" />
+                    <Label Text="" FontSize="12" Opacity="0.6" />
+                </VerticalStackLayout>
+                <Picker Grid.Column="1" HorizontalOptions="End" Title="Как на устройстве"/>
             </Grid>
         </VerticalStackLayout>
         <controls:SideMenuControl x:Name="SideMenu" />

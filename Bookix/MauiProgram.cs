@@ -58,6 +58,8 @@ namespace Bookix
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Pusia Bold.otf", "PusiaBold");
+                    fonts.AddFont("Merriweather-Italic", "MerriweatherItalic");
+                    fonts.AddFont("Merriweather-Regular", "MerriweatherRegular");
                 });
 
 //#if ANDROID

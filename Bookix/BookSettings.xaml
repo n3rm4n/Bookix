@@ -3,15 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
              x:Class="Bookix.BookSettings"
-             Padding="16 ,32" Background="#F3F3F3" HasHandle="True" IsCancelable="True">
+             Padding="16 ,32" Background="#FFF8E1" HasHandle="True" IsCancelable="True">
     <the49:BottomSheet.Detents>
         <the49:MediumDetent/>
     </the49:BottomSheet.Detents>
-    <VerticalStackLayout>
-        <Button Background="DimGray" Margin="0, 10, 0, 0" Text="Удалить книгу" Clicked="OnDeleteBookButtonClicked"/>
-        <BoxView HeightRequest="2.5" Color="Gray" Margin="15,10,15,10"/>
-        <Button Background="DimGray" Margin="0, 5, 0, 0" Text="Отметить как прочитанное" Padding="0, 5"/>
-        <BoxView HeightRequest="2.5" Color="Gray" Margin="15,10,15,10"/>
-        <Button Background="DimGray" Margin="0, 5, 0, 0" Text="Редактировать книгу" Padding="0, 5"/>
-    </VerticalStackLayout>
+    <Grid>
+        <VerticalStackLayout>
+            <Button Background="DimGray" Margin="0, 10, 0, 0" Text="Удалить книгу" Clicked="OnDeleteBookButtonClicked"/>
+            <BoxView HeightRequest="2.5" Color="Gray" Margin="15,10,15,10"/>
+            <Button Background="DimGray" Margin="0, 5, 0, 0" Text="Отметить как прочитанное" Padding="0, 5"/>
+            <BoxView HeightRequest="2.5" Color="Gray" Margin="15,10,15,10"/>
+            <Button Background="DimGray" Margin="0, 5, 0, 0" Text="Редактировать книгу" Padding="0, 5"/>
+            <BoxView HeightRequest="2.5" Color="Gray" Margin="15,10,15,10"/>
+            <Button Background="DimGray" Margin="0, 5, 0, 0" Text="Поделиться" Padding="0, 5"/>
+        </VerticalStackLayout>
+    </Grid>
 </the49:BottomSheet>

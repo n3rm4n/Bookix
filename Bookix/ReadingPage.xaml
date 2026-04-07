@@ -2,13 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:services="clr-namespace:Bookix.Services"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Bookix.ReadingPage"
              Title="{Binding Title}"
              BackgroundColor="White"
+             Shell.BackgroundColor="#FFECB3"
              >
-
-	<Grid>
+             <!--android:NavigationPage.BarHeight="20"-->
+    <ContentPage.Behaviors>
+        <!-- Установка цвета фона и стиля иконок (Light/Dark) -->
+        <toolkit:StatusBarBehavior StatusBarColor="#645637" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
+    <Grid>
         <CollectionView
             x:Name="BookListView"
             Margin="15"
@@ -17,15 +23,15 @@
             SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10,5" RowDefinitions="Auto">
+                    <Grid Padding="10,2" RowDefinitions="Auto">
                         <services:EnhancedLabel Text="{Binding .}"
-								   FontSize="18"
+								   FontSize="14"
 								   TextColor="Black"
 								   LineBreakMode="WordWrap"
 								   VerticalOptions="Start"
 								   HorizontalOptions="Fill"
                                    IsTextSelectionEnabled="True"
-                                   HorizontalTextAlignment="Start"
+                                   HorizontalTextAlignment="Justify" FontFamily="MerriweatherRegular"
                                    >
                             <!--<services:EnhancedLabel.Behaviors>-->
                                 <!--<services:TrimLabelSelectionBehavior />-->

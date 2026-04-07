@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<the49:BottomSheet xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+             xmlns:services="clr-namespace:Bookix.Services"
+             x:Class="Bookix.WordDefinition"
+             Padding="16, 32" Background="#E3E3E3" HasHandle="True">
+    <the49:BottomSheet.Detents>
+        <the49:MediumDetent/>
+    </the49:BottomSheet.Detents>
+    <VerticalStackLayout Spacing="10">
+
+        <services:EnhancedLabel x:Name="DefinitionLabel" IsTextSelectionEnabled="True" FontSize="16" TextColor="Black"/>
+    </VerticalStackLayout>
+</the49:BottomSheet>
